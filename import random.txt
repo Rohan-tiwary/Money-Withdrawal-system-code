@@ -1,0 +1,57 @@
+import random
+# Initial account balance
+balance = 5000
+# Generate random 4-digit PIN
+pin = random.randint(1000, 1000)
+# Define function to handle withdrawing 
+def withdraw():
+  global balance
+  amount = int(input("Enter amount to withdraw: "))
+  if amount > balance:
+    print("Insufficient balance")
+  else:
+    balance -= amount
+    print(f"Amount withdrawn: {amount}")
+    print(f"New balance: {balance}")
+# Define function to handle resetting PIN
+def reset_pin():
+  global pin
+  new_pin = int(input("Enter new 4-digit PIN: "))
+  if new_pin == pin:
+    print("New PIN matches old PIN. Please enter a different PIN.")
+  else:
+    pin = new_pin
+    print(f"New PIN set to: {pin}")
+# Define function to handle transferring money
+def transfer():
+  global balance
+  amount = int(input("Enter amount to transfer: "))
+  if amount > balance:
+    print("Insufficient balance")
+  else:
+    receiver_account = input("Enter receiver's account number: ")
+    balance -= amount
+    print(f"{amount} transferred to account {receiver_account}")
+    print(f"New balance: {balance}")
+# Prompt user for PIN
+user_pin = int(input("Enter 4-digit PIN: "))
+# Check PIN
+if user_pin != pin:
+  print("Invalid PIN. Please try again.")
+else:
+  print("Welcome!")
+  print("How can we help you today?")
+  print("1. Withdraw money")
+  print("2. Reset PIN")
+  print("3. Transfer money")
+  # Prompt user for choice
+  choice = int(input("Enter choice: "))
+  # Handle user choice
+  if choice == 1:
+    withdraw()
+  elif choice == 2:
+    reset_pin()
+  elif choice == 3:
+    transfer()
+  else:
+    print("Invalid choice. Please try again.")
